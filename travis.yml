@@ -1,0 +1,18 @@
+before_install:
+- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended"
+script:
+- mkdir _build
+- pdflatex -output-directory _build tex/document.tex
+- pdflatex -output-directory _build tex/document.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: "bRVVEYCZe/oATr/HeH3m5A73Dt1rxIeho+r3dRJVWheClAstYfsq79KHQEdzz4lLfTsYwPRNWNqJu1vkuWPgHeJBSe8W5tsa6HTa7Me+0F9Qfgh2iUC0oejfyWuFCCarZs4pZ1Lrjl0mBQI3QW2P6CIhU/lOb2KxxGfs8kHp9YdBNi+8VUAF4mm2/w7ZR6OhdsUzUrE+ZJH8UCmKTtMzejt/24nfgcWeNmMwmRxmHcGsjKmdYdObCZhYaEPie0yA/HoJ0+QhhOQhzou7QjSmOpdgKgii+9t/YBHGd6iS/PYcHIyy5F0RwTssk8PeY3wCGDV6+xMGGvqpqakJOcVA9oBV3N80hkZ+BTxgQ57aZMHnxj+r0bCpcHvXFTjXT5kU+xL9PSxdOCpCx8Q6tifrTF8N+A8O1jeQv10s6B1JxXU0TI8Qjh9T7Y5YA2Z7DrXLC0IH2fqi4X+6YmaLnmUx/uxZVf9FtgK+Db8TDMt/sWRR8Kh0TUCTOvL4vC8r9Dbd1XGsI900ChAtLQGM1wDAEuStS94CljkA/rZ3fFogyNYzUSmKfSSDwnXOcrhKYH/UUREzF5JQ2f6Vi2M2cNh8o1c2kpCsOD1MGy24SoicvKlGaL1AKlsoDeCop0Rhd+jZmF412PfIAdmzWLdOD4u8CQzCJLMz4+YT7ZrrXwEkvs8="
+  file:
+  - _build/document.pdf
+  skip_cleanup: true
+  on:
+    tags: true
+
+
+
